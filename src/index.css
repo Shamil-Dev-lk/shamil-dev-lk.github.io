@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Global Styles — Cooperative Society Management System
+   ============================================================ */
+
+@layer base {
+  :root {
+    --color-primary: #CC0000;
+    --color-primary-hover: #B30000;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "Nirmala UI", "Noto Sans Sinhala", "Segoe UI", Arial, sans-serif;
+    background-color: #FFF5F5;
+    color: #333333;
+    line-height: 1.6;
+  }
+
+  /* Dark mode body */
+  .dark body {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #CC0000;
+  }
+
+  /* Focus ring */
+  *:focus-visible {
+    outline: 2px solid #CC0000;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Card */
+  .card {
+    @apply bg-white dark:bg-surface-dark rounded-2xl shadow-card p-6;
+  }
+
+  /* Input base */
+  .input-base {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 text-sm transition-all duration-200
+      focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
+      dark:bg-gray-800 dark:border-gray-600 dark:text-white;
+  }
+
+  /* Button primary */
+  .btn-primary {
+    @apply flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white
+      px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 shadow-sm
+      hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  /* Button secondary */
+  .btn-secondary {
+    @apply flex items-center justify-center gap-2 border border-gray-200 text-gray-700
+      hover:bg-gray-50 px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-blue {
+    @apply badge bg-blue-50 text-blue-700;
+  }
+
+  .badge-green {
+    @apply badge bg-emerald-50 text-emerald-700;
+  }
+
+  .badge-red {
+    @apply badge bg-red-50 text-red-700;
+  }
+
+  .badge-purple {
+    @apply badge bg-purple-50 text-purple-700;
+  }
+
+  /* Table styles */
+  .table-header {
+    @apply px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide;
+  }
+
+  .table-cell {
+    @apply px-4 py-3 text-sm text-gray-600 dark:text-gray-300;
+  }
+
+  /* Status indicators */
+  .status-valid {
+    @apply badge bg-emerald-50 text-emerald-700;
+  }
+
+  .status-duplicate {
+    @apply badge bg-amber-50 text-amber-700;
+  }
+
+  .status-invalid {
+    @apply badge bg-red-50 text-red-700;
+  }
+}
+
+@layer utilities {
+  /* Text utilities */
+  .text-primary-gradient {
+    @apply bg-gradient-to-r from-primary to-red-800 bg-clip-text text-transparent;
+  }
+
+  /* Glass morphism */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .glass-dark {
+    backdrop-filter: blur(10px);
+    background: rgba(30, 30, 30, 0.8);
+  }
+
+  /* Smooth hover lift */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-0.5;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print,
+  aside,
+  header,
+  nav,
+  button,
+  .search-filter-bar,
+  .pagination,
+  .bulk-actions {
+    display: none !important;
+  }
+
+  /* Reset colors for printing to prevent white-on-white text in dark mode */
+  *, ::before, ::after {
+    color: black !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  body, #root, #root > div, #root > div > div, main, .card, table, tr, td, th {
+    background-color: white !important;
+    background-image: none !important;
+  }
+
+  body {
+    font-size: 11px;
+  }
+  
+  @page {
+    margin: 15mm;
+  }
+
+  /* Reset layout margins for printing */
+  body, #root, #root > div, #root > div > div, main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Disable animations and force full opacity/position during printing */
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-in,
+  [class*="animate-"] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .flex-1 {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Ensure scrollable / hidden containers expand fully on print */
+  .overflow-hidden, .overflow-x-auto, .overflow-y-auto {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding: 10px !important;
+  }
+
+  /* Override inline margin-left on print */
+  div[style*="margin-left"] {
+    margin-left: 0 !important;
+  }
+
+  /* Clean up tables for print */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+  th, td {
+    border: 1px solid #ddd !important;
+    padding: 6px 8px !important;
+  }
+
+  /* Specific rule for printing member profile modal */
+  body.printing-member-profile {
+    visibility: hidden;
+  }
+  body.printing-member-profile .printable-profile {
+    visibility: visible !important;
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  body.printing-member-profile .printable-profile * {
+    visibility: visible !important;
+  }
+}
